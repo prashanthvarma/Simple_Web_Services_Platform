@@ -1,0 +1,33 @@
+<html> 
+<head> 
+<title></title> 
+</head> 
+
+<body> 
+
+
+<?php 
+if($_REQUEST['action'] == "confirm"){?> 
+<form name="delete" action="<?=$PHP_SELF?>" method="post" enctype="multipart/form-data"> 
+<input type="hidden" name="action" value="delete" /> 
+<input type="hidden" name="id" value="<?=$_REQUEST['id'] ?>" /> 
+Are you sure you wish to delete "<?echo $_REQUEST['id'];?>" ? 
+<input type="submit" name="submit" value="YES" /> 
+</form><? } 
+
+
+if ($_POST['doaction']=='YES')  
+{ 
+    $file = $_REQUEST['id']; 
+    if (file_exists($file)) 
+    { 
+        unlink('./home/x/public_html/test/' .$file); 
+        echo "Deleted '$file'"; 
+    } 
+    else 
+    { 
+        echo "The file '$file' does not exist."; 
+    } 
+} 
+
+?>  
